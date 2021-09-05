@@ -6,6 +6,5 @@ MarkupSafe
 numpy
 pandas
 scikit-learn
-scipy
 sklearn
 Werkzeug
