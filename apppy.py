@@ -36,14 +36,19 @@ def predict_hdc():
     output = prediction
     
     # Check the output values and retrive the result with html tag based on the value
-    if output == 1:
-        return render_template('heart_disease.html', 
-                               result = 'You may have heart disease!')
-    
+    if output == 0:
+        return render_template('heart_disease.html', prediction_text='THE PATIENT IS NOT LIKELY TO HAVE A HEART FAILURE')
     else:
+         return render_template('heart_disease.html', prediction_text='THE PATIENT IS LIKELY TO HAVE A HEART FAILURE')
+    
+#     if output == 0:
+#         return render_template('heart_disease.html', 
+#                                result = 'You may have heart disease!')
+    
+#     else:
         
-        return render_template('heart_disease.html', 
-                               result = 'You may not have heart disease!')
+#         return render_template('heart_disease.html', 
+#                                result = 'You may not have heart disease!')
  
 @app.route('/diab_page')
 def diab_page():
