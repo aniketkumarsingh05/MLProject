@@ -39,7 +39,10 @@ def predict_hdc():
     if output == 1:
         return render_template('heart_disease.html', 
                                result = 'You may have heart disease!')
-    else:
+        return
+    
+    if output == 0:
+        
         return render_template('heart_disease.html', 
                                result = 'You may not have heart disease!')
  
