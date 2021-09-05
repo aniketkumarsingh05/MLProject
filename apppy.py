@@ -44,7 +44,16 @@ def predict_hdc():
         data = np.array([[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]])
         my_prediction = model.predict(data)
         
-        return render_template('heart_disease.html', prediction=my_prediction)
+        if output == 0:
+            return render_template('heart_disease.html', 
+                               result = 'You may have heart disease!')
+    
+        else:
+        
+            return render_template('heart_disease.html', 
+                                   result = 'You may not have heart disease!')
+        
+        #return render_template('heart_disease.html', prediction=my_prediction)
     
 #     # Put all form entries values in a list 
 #     features = [float(i) for i in request.form.values()]
