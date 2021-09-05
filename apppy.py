@@ -25,26 +25,46 @@ def heart_page():
 
 @app.route('/predict_hdc', methods =['POST'])
 def predict_hdc():
-    
-    # Put all form entries values in a list 
-    features = [float(i) for i in request.form.values()]
-    # Convert features to array
-    array_features = [np.array(features)]
-    # Predict features
-    prediction = model1.predict(array_features)
-    
-    output = prediction
-    
-    # Check the output values and retrive the result with html tag based on the value
-    
-    if output == 0:
-        return render_template('heart_disease.html', 
-                               result = 'You may have heart disease!')
-    
-    else:
+    if request.method == 'POST':
+
+        age = int(request.form['age'])
+        sex = request.form.get('sex')
+        cp = request.form.get('cp')
+        trestbps = int(request.form['trestbps'])
+        chol = int(request.form['chol'])
+        fbs = request.form.get('fbs')
+        restecg = int(request.form['restecg'])
+        thalach = int(request.form['thalach'])
+        exang = request.form.get('exang')
+        oldpeak = float(request.form['oldpeak'])
+        slope = request.form.get('slope')
+        ca = int(request.form['ca'])
+        thal = request.form.get('thal')
         
-        return render_template('heart_disease.html', 
-                               result = 'You may not have heart disease!')
+        data = np.array([[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]])
+        my_prediction = model.predict(data)
+        
+        return render_template('result.html', prediction=my_prediction)
+    
+#     # Put all form entries values in a list 
+#     features = [float(i) for i in request.form.values()]
+#     # Convert features to array
+#     array_features = [np.array(features)]
+#     # Predict features
+#     prediction = model1.predict(array_features)
+    
+#     output = prediction
+    
+#     # Check the output values and retrive the result with html tag based on the value
+    
+#     if output == 0:
+#         return render_template('heart_disease.html', 
+#                                result = 'You may have heart disease!')
+    
+#     else:
+        
+#         return render_template('heart_disease.html', 
+#                                result = 'You may not have heart disease!')
  
 @app.route('/diab_page')
 def diab_page():
